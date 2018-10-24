@@ -1,17 +1,10 @@
-Laboratory work 5. 3-rd party remote API call
+Sixth laboratory work for Mobile Development.
 
-Choose one of API services listed on page that you will use for development of application as a part of 5-12 lab works. 
-Make sure that chosen API service is not selected by any other student. 
-API service should be approved by your supervisor.
+Task:
 
-Requirements for API service:
-Resource provided by API has image attribute. (URLs for images that can be downloaded)
-API provides list of objects (list of movies, events, etc.)
-
-DoD:
-Load list of resource from chosen API and display result on UI. (writing parsed object details to log will be sufficient)
-Parse response and store it in your entity.
-Use Retrofit on Android or Alamofire on iOS for remote calls execution.
-Use CocoaPods for 3rd-party dependencies management on iOS.
-
- 
+Display list of resources loaded via API call, implemented in previous lab work
+Follow Android/iOS guidelines for UI element sizes, colors, ect.
+In android for accessing UI resourses (Buttons, click listeners etc) - use butter knife library
+Implement pull-to-refresh functionality (reload list on pull-down gesture)
+Implement “No data” UI state.
+Each list item has to have image downloaded from API you’ve chosen previously
