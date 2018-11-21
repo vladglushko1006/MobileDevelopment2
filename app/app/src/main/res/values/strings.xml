@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">lab7</string>
+    <string name="loading">Loading...</string>
+    <string name="on_failure">Something went wrong...Please try later!</string>
+    <string name="no_data">No data</string>
+    <string name="Weight_class">Weight class: %s</string>
+    <string name="draws">Draws: %d</string>
+    <string name="wins">Wins: %d</string>
+    <string name="losses">Losses: %d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
