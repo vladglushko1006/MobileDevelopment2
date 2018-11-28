@@ -11,6 +11,14 @@ android:
     - android-24
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
+    
+deploy:
+  provider: releases
+  api-key: "52074e6813b0a266a7f26127cdaa85d3b5d708cd"
+  file: "app/build/outputs/apk/debug/app-debug.apk"
+  skip_cleanup: true
+  on:
+    tags: true
 
 before_script:
   - echo yes | sdkmanager "build-tools;27.0.3"
