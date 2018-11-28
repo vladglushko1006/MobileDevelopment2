@@ -14,8 +14,7 @@ android:
     
 deploy:
   provider: releases
-  user: "vladglushko1006"
-  password: "nsvjq1gblfhfc"
+  api_key: '$GH_TOKEN'
   file: "app/build/outputs/apk/debug/app-debug.apk"
   skip_cleanup: true
   on:
