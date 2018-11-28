@@ -1,9 +1,10 @@
 package com.vladglush.lab5.presenters;
 
+import android.content.Context;
+
 import com.vladglush.lab5.entity.UfcFighter;
 import com.vladglush.lab5.models.FavoritesInteractor;
 import com.vladglush.lab5.models.FavoritesInteractorImpl;
-import com.vladglush.lab5.repositories.FavoritesRepository;
 import com.vladglush.lab5.views.FavoritesView;
 
 import java.util.List;
@@ -11,13 +12,13 @@ import java.util.List;
 public class FavoritesPresenterImpl implements FavoritesPresenter, FavoritesInteractor.OnFinishedListener {
     private FavoritesView view;
     private FavoritesInteractor interactor;
-    private FavoritesRepository repository;
+    private Context context;
 
-    public FavoritesPresenterImpl(FavoritesView view, FavoritesRepository repository) {
+    public FavoritesPresenterImpl(FavoritesView view, Context context) {
         this.view = view;
-        this.repository = repository;
+        this.context = context;
 
-        this.interactor = new FavoritesInteractorImpl(repository, this);
+        this.interactor = new FavoritesInteractorImpl(context, this);
     }
 
     @Override

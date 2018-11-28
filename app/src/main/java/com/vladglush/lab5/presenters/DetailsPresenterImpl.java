@@ -1,22 +1,23 @@
 package com.vladglush.lab5.presenters;
 
+import android.content.Context;
+
 import com.vladglush.lab5.entity.UfcFighter;
 import com.vladglush.lab5.models.DetailsInteractor;
 import com.vladglush.lab5.models.DetailsInteractorImpl;
-import com.vladglush.lab5.repositories.DetailsRepository;
 import com.vladglush.lab5.views.DetailsView;
 
 public class DetailsPresenterImpl implements DetailsPresenter, DetailsInteractor.OnFinishedListener {
     private DetailsView view;
     private DetailsInteractor interactor;
 
-    private DetailsRepository repository;
+    private Context context;
 
-    public DetailsPresenterImpl(DetailsView view, DetailsRepository repository) {
+    public DetailsPresenterImpl(DetailsView view, Context context) {
         this.view = view;
-        this.repository = repository;
+        this.context = context;
 
-        this.interactor = new DetailsInteractorImpl(repository, this);
+        this.interactor = new DetailsInteractorImpl(context, this);
     }
 
     @Override

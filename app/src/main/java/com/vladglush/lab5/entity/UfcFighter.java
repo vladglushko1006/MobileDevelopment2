@@ -1,14 +1,16 @@
 package com.vladglush.lab5.entity;
 
 public class UfcFighter {
-    private String first_name;
-    private String last_name;
-    private String thumbnail;
-    private String weight_class;
+    // variable names must be the same as from API responce
 
-    private int wins;
-    private int losses;
-    private int draws;
+    private final String first_name;
+    private final String last_name;
+    private final String thumbnail;
+    private final String weight_class;
+
+    private final int wins;
+    private final int losses;
+    private final int draws;
 
     public UfcFighter(String first_name, String last_name, String thumbnail, String weight_class, int wins, int losses, int draws) {
         this.first_name = first_name;

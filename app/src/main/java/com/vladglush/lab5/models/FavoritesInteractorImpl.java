@@ -5,24 +5,23 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.vladglush.lab5.entity.UfcFighter;
-import com.vladglush.lab5.repositories.FavoritesRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class FavoritesInteractorImpl implements FavoritesInteractor {
-    private FavoritesRepository repository;
+    private Context context;
     private FavoritesInteractor.OnFinishedListener onFinishedListener;
 
-    public  FavoritesInteractorImpl(FavoritesRepository repository, FavoritesInteractor.OnFinishedListener onFinishedListener) {
-        this.repository = repository;
+    public  FavoritesInteractorImpl(Context context, FavoritesInteractor.OnFinishedListener onFinishedListener) {
+        this.context = context;
         this.onFinishedListener = onFinishedListener;
     }
 
     @Override
     public void getFighters() {
-        SharedPreferences sharedPreferences = repository.getContext().getSharedPreferences("favorites", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("favorites", Context.MODE_PRIVATE);
 
         List<UfcFighter> fighters = new ArrayList<>();
         Map<String, ?> map = sharedPreferences.getAll();

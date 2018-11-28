@@ -1,10 +1,10 @@
-Sixth laboratory work for Mobile Development.
+Laboratory work 8. Project structure and architecture
 
 Task:
 
-Display list of resources loaded via API call, implemented in previous lab work
-Follow Android/iOS guidelines for UI element sizes, colors, ect.
-In android for accessing UI resourses (Buttons, click listeners etc) - use butter knife library
-Implement pull-to-refresh functionality (reload list on pull-down gesture)
-Implement “No data” UI state.
-Each list item has to have image downloaded from API you’ve chosen previously
+Refactor code of the previous lab to make sure that it follows recommended architectural approaches on the respective platform. 
+Please use MVP pattern on Android and iOS
+Container-component pattern + redux on React Native
+You are NOT required(but allowed) to use any libraries for that (on lectures we reviewed approach which allows accomplishing task without any 3rd party)
+Please extract all the components you need to share between presenters into Application class(AppDelegate)
+Please extract separate class which will encapsulate the logic related to screen navigation

@@ -15,8 +15,7 @@ import android.widget.Toast;
 
 import com.vladglush.lab5.MainActivity;
 import com.vladglush.lab5.R;
-import com.vladglush.lab5.UFCApplication;
-import com.vladglush.lab5.adapters.CustomAdapter;
+import com.vladglush.lab5.adapters.RecyclerViewAdapter;
 import com.vladglush.lab5.entity.UfcFighter;
 import com.vladglush.lab5.presenters.ListPresenter;
 import com.vladglush.lab5.presenters.ListPresenterImpl;
@@ -27,9 +26,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ListFragment extends Fragment implements ListView {
     @BindView(R.id.customRecyclerView)
@@ -42,7 +38,7 @@ public class ListFragment extends Fragment implements ListView {
     @BindView(R.id.showFavorites)
     protected Button showFavoritesButton;
 
-    private CustomAdapter adapter;
+    private RecyclerViewAdapter adapter;
     private ProgressDialog progDialog;
 
     private ListPresenter presenter;
@@ -59,7 +55,7 @@ public class ListFragment extends Fragment implements ListView {
         progDialog.setMessage(getString(R.string.loading));
         progDialog.show();
 
-        adapter = new CustomAdapter(this.getContext(), new ArrayList<UfcFighter>());
+        adapter = new RecyclerViewAdapter(this.getContext(), new ArrayList<UfcFighter>());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -75,7 +71,7 @@ public class ListFragment extends Fragment implements ListView {
         showFavoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) v.getContext()).setFragment(new FavoritesFragment());
+                ((MainActivity) v.getContext()).setFragment(new FavoritesFragment(), true);
             }
         });
 
@@ -94,7 +90,7 @@ public class ListFragment extends Fragment implements ListView {
 
     @Override
     public void updateList(List<UfcFighter> fighters) {
-        adapter.updatehList(fighters);
+        adapter.updateList(fighters);
         updateRefreshingUI(true);
     }
 

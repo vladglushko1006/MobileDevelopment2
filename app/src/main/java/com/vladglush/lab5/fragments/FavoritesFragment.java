@@ -1,5 +1,6 @@
 package com.vladglush.lab5.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vladglush.lab5.R;
-import com.vladglush.lab5.adapters.CustomAdapter;
+import com.vladglush.lab5.adapters.RecyclerViewAdapter;
 import com.vladglush.lab5.entity.UfcFighter;
 import com.vladglush.lab5.presenters.FavoritesPresenter;
 import com.vladglush.lab5.presenters.FavoritesPresenterImpl;
-import com.vladglush.lab5.repositories.FavoritesRepository;
 import com.vladglush.lab5.views.FavoritesView;
 
 import java.util.List;
@@ -23,10 +23,10 @@ import butterknife.ButterKnife;
 
 public class FavoritesFragment extends Fragment implements FavoritesView {
 
-    private FavoritesRepository repository;
+    private Context context;
     private FavoritesPresenter presenter;
 
-    private CustomAdapter adapter;
+    private RecyclerViewAdapter adapter;
 
     @BindView(R.id.favoritesRecyclerView)
     protected RecyclerView favoritesList;
@@ -37,8 +37,7 @@ public class FavoritesFragment extends Fragment implements FavoritesView {
 
         ButterKnife.bind(this, view);
 
-        repository = new FavoritesRepository(getActivity());
-        presenter = new FavoritesPresenterImpl(this, repository);
+        presenter = new FavoritesPresenterImpl(this, getActivity());
 
         presenter.requestData();
 
@@ -50,7 +49,7 @@ public class FavoritesFragment extends Fragment implements FavoritesView {
 
     @Override
     public void setData(List<UfcFighter> fighters) {
-        adapter = new CustomAdapter(this.getContext(), fighters);
+        adapter = new RecyclerViewAdapter(this.getContext(), fighters);
         favoritesList.setAdapter(adapter);
     }
 }

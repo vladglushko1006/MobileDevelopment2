@@ -1,7 +1,6 @@
 package com.vladglush.lab5.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.vladglush.lab5.ApplicationEx;
 import com.vladglush.lab5.fragments.DetailsFragment;
 import com.vladglush.lab5.MainActivity;
 import com.vladglush.lab5.R;
@@ -23,12 +22,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
     private List<UfcFighter> dataList;
     private Context context;
 
-    public CustomAdapter(Context context,List<UfcFighter> dataList){
+    public RecyclerViewAdapter(Context context,List<UfcFighter> dataList){
         this.context = context;
         this.dataList = dataList;
     }
@@ -69,10 +68,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             @Override
             public void onClick(View v) {
                 DetailsFragment fragment = new DetailsFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("details", new Gson().toJson(dataList.get(position)));
-                fragment.setArguments(bundle);
-                ((MainActivity) v.getContext()).setFragment(fragment);
+                ApplicationEx.getInstance().setCurrentFighter(dataList.get(position));
+                ((MainActivity) v.getContext()).setFragment(fragment, true);
             }
         });
     }
@@ -82,17 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         return Math.min(dataList.size(),10);
     }
 
-    public void clear() {
-        dataList.clear();
-        notifyDataSetChanged();
-    }
-
-    public void addAll(List<UfcFighter> list) {
-        dataList.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public void updatehList(List<UfcFighter> fighters) {
+    public void updateList(List<UfcFighter> fighters) {
         this.dataList.clear();
         this.dataList.addAll(fighters);
         notifyDataSetChanged();

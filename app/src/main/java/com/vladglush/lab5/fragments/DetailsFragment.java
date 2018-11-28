@@ -15,24 +15,20 @@ import com.vladglush.lab5.R;
 import com.vladglush.lab5.entity.UfcFighter;
 import com.vladglush.lab5.presenters.DetailsPresenter;
 import com.vladglush.lab5.presenters.DetailsPresenterImpl;
-import com.vladglush.lab5.repositories.DetailsRepository;
 import com.vladglush.lab5.views.DetailsView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailsFragment extends Fragment implements DetailsView {
-
+    private static final int normalSize = 300;
+    private static final int bigSize = 1000;
 
     private UfcFighter fighter;
 
     private boolean isFullScreen;
 
-    private static final int normalSize = 300;
-    private static final int bigSize = 1000;
-
     private DetailsPresenter presenter;
-    private DetailsRepository repository;
 
     @BindView(R.id.fullNameTextView)
     protected TextView fullNameTextView;
@@ -61,8 +57,7 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
         ButterKnife.bind(this, view);
 
-        repository = new DetailsRepository(getActivity(), this);
-        presenter = new DetailsPresenterImpl(this, repository);
+        presenter = new DetailsPresenterImpl(this, getContext());
 
         presenter.getFighter();
         setContent();

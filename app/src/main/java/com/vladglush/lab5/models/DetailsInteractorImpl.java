@@ -2,23 +2,22 @@ package com.vladglush.lab5.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 
 import com.google.gson.Gson;
+import com.vladglush.lab5.ApplicationEx;
 import com.vladglush.lab5.entity.UfcFighter;
-import com.vladglush.lab5.repositories.DetailsRepository;
 
 public class DetailsInteractorImpl implements DetailsInteractor {
-    private DetailsRepository repository;
+    private Context context;
     private DetailsInteractor.OnFinishedListener onFinishedListener;
 
     private SharedPreferences sharedPreferences;
 
-    public DetailsInteractorImpl(DetailsRepository repository, DetailsInteractor.OnFinishedListener onFinishedListener) {
-        this.repository = repository;
+    public DetailsInteractorImpl(Context context, DetailsInteractor.OnFinishedListener onFinishedListener) {
+        this.context = context;
         this.onFinishedListener = onFinishedListener;
 
-        sharedPreferences = repository.getContext().getSharedPreferences("favorites", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("favorites", Context.MODE_PRIVATE);
     }
 
     private String getFullName(UfcFighter fighter) {
@@ -40,11 +39,7 @@ public class DetailsInteractorImpl implements DetailsInteractor {
 
     @Override
     public void getFighter() {
-        Bundle bundle = repository.getFragment().getArguments();
-
-        if (bundle != null) {
-            UfcFighter fighter = new Gson().fromJson(bundle.getString("details"), UfcFighter.class);
-            onFinishedListener.setFighter(fighter);
-        }
+        UfcFighter fighter = ApplicationEx.getInstance().getCurrentFighter();
+        onFinishedListener.setFighter(fighter);
     }
 }
