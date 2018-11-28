@@ -16,5 +16,6 @@ before_script:
   - echo yes | sdkmanager "build-tools;27.0.3"
   - chmod +x gradlew
 
-script: ./gradlew connectedAndroidTest
+script: 
+ - ./gradlew connectedAndroidTest
  - ./gradlew assembleDebug
