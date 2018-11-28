@@ -19,6 +19,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+    all-branches: true
 
 before_script:
   - echo yes | sdkmanager "build-tools;27.0.3"
